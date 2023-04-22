@@ -1,4 +1,5 @@
 import csv
+import os
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from pathlib import Path
@@ -16,7 +17,13 @@ def filter_waist_measurements(request):
                 print(weight)
                 age = request.data['age']
                 print(age)
-                with open(str(cur_dir)+'\measurements.csv', 'r') as file:
+                module_dir = os.path.dirname(__file__)
+                print("module_dir >>",module_dir)
+
+                file_path = os.path.join(module_dir, 'measurements.csv')
+                print("file_path >>",file_path)
+
+                with open(file_path, 'rb') as file:
                     reader = csv.DictReader(file)
                     data = list(reader)
                     filtered_data = [d for d in data if d.get('Height(cm)') == height and d.get('Weight(kgs)') == weight and d.get('Age') == age]
