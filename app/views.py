@@ -23,7 +23,7 @@ def filter_waist_measurements(request):
                 file_path = os.path.join(module_dir, 'measurements.csv')
                 print("file_path >>",file_path)
 
-                with open(file_path, 'r') as file:
+                with open(file_path, 'rb') as file:
                     print("Innnnnnnnnnnnnnnnnnn")
                     reader = csv.DictReader(file)
                     data = list(reader)
@@ -52,8 +52,13 @@ def add_waist_measurements(request):
             age = request.data['age']
             waist = request.data['waist']
             print(height,weight,age,waist)
+
+            module_dir = os.path.dirname(__file__)
+            print("module_dir >>",module_dir)
+            file_path = os.path.join(module_dir, 'measurements.csv')
+            print("file_path >>",file_path)
             
-            with open(str(cur_dir)+'\measurements.csv', 'r') as file:
+            with open(file_path, 'r') as file:
                 reader = csv.DictReader(file)
                 data = list(reader)
         
