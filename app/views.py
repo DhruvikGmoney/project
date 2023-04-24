@@ -23,7 +23,7 @@ def filter_waist_measurements(request):
                 file_path = os.path.join(module_dir, 'measurements.csv')
                 print("file_path >>",file_path)
 
-                with open(file_path, 'rb') as file:
+                with open(file_path, 'r') as file:
                     print("Innnnnnnnnnnnnnnnnnn")
                     reader = csv.DictReader(file)
                     data = list(reader)
